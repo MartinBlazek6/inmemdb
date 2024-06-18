@@ -1,6 +1,7 @@
 package org.example.atat;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -46,10 +47,7 @@ public class InMemoryDatabase {
 
     public String w(int count) {
         return db.keySet().stream()
-                .sorted((k1, k2) -> {
-                    int cmp = Integer.compare(operationCount.get(k2), operationCount.get(k1));
-                    return cmp != 0 ? cmp : k1.compareTo(k2);
-                })
+                .sorted(Comparator.comparingInt(k -> operationCount.get(k)).reversed())
                 .limit(count)
                 .map(key -> key + "(" + operationCount.get(key) + ")")
                 .collect(Collectors.joining(","));
