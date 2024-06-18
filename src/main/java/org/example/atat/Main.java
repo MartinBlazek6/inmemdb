@@ -3,7 +3,7 @@ package org.example.atat;
 import java.util.Arrays;
 
 public class Main {
-    static  InMemoryDatabase db = new InMemoryDatabase();
+    static final InMemoryDatabase db = new InMemoryDatabase();
 
     public static void dbIterator(String... commands){
         Arrays.stream(commands).forEach(command -> System.out.printf("%s,",db.executeInstructions(command)));
@@ -18,7 +18,29 @@ public class Main {
                 "SET_OR_INC foo baz 1337",
                 "SET_OR_INC bar foo 15",
                 "SET_OR_INC bar foo 15",
-                "DELETE foo bar");
+                "DELETE foo bar",
+                "SHOW_DB",
+                "w 2"
+                );
+
+//        dbIterator(
+//                "SET_OR_INC Alice age 20",
+//"SET_OR_INC Alice height 170",
+//"GET Alice age",
+//"SET_OR_INC Alice age 1",
+//"SET_OR_INC Bob age 24",
+//"SET_OR_INC Bob experience 5",
+//"SET_OR_INC Bob height 182",
+////"TOP_N_KEYS 2",
+//"DELETE Charlie age",
+//"DELETE Bob age",
+//                "SHOW_DB"
+////"TOP_N_KEYS 1"
+//                );
+
+
+        System.out.println();
+
 
 //        System.out.println(db.executeInstructions("SET_OR_INC foo bar 42"));
 //        System.out.println(db.executeInstructions("GET bar foo"));
